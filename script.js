@@ -1,3 +1,5 @@
+let isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints;
+
 function showSection(sectionId) {
   document.querySelectorAll(".control-section").forEach((section) => {
     section.classList.remove("active");
@@ -300,19 +302,81 @@ window.addEventListener("load", () => {
     }
   });
 
-  // Add mouse wheel zoom
+  // Touch event listeners for mobile
+  if (isTouchDevice) {
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    document.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    });
+
+    document.addEventListener("touchmove", (e) => {
+      const deltaX = e.touches[0].clientX - touchStartX;
+      const deltaY = e.touches[0].clientY - touchStartY;
+
+      targetRotationY += deltaX * 0.01;
+      targetRotationX += deltaY * 0.01;
+
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    });
+  }
+
+  // Add mouse wheel zoom with limits
+  const minDistance = 20; // Minimum zoom distance
+  const maxDistance = 100; // Maximum zoom distance
+
   document.addEventListener("wheel", (e) => {
-    const zoomSpeed = 2;
     const distance = Math.sqrt(
       camera.position.x * camera.position.x +
         camera.position.y * camera.position.y +
         camera.position.z * camera.position.z
     );
 
-    if (e.deltaY > 0 && distance < 100) {
+    if (e.deltaY < 0 && distance < maxDistance) {
       camera.position.multiplyScalar(1.1);
-    } else if (e.deltaY < 0 && distance > 20) {
+    } else if (e.deltaY > 0 && distance > minDistance) {
       camera.position.multiplyScalar(0.9);
+    }
+  });
+
+  // Touch pinch zoom for mobile with limits
+  let initialDistance = null;
+
+  document.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 2) {
+      initialDistance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+    }
+  });
+
+  document.addEventListener("touchmove", (e) => {
+    if (e.touches.length === 2 && initialDistance) {
+      const currentDistance = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+
+      const zoomFactor = initialDistance / currentDistance; // Inverted zoom factor
+
+      const distance = Math.sqrt(
+        camera.position.x * camera.position.x +
+          camera.position.y * camera.position.y +
+          camera.position.z * camera.position.z
+      );
+
+      if (
+        distance * zoomFactor > minDistance &&
+        distance * zoomFactor < maxDistance
+      ) {
+        camera.position.multiplyScalar(zoomFactor);
+      }
+
+      initialDistance = currentDistance; // Update the initial distance
     }
   });
 

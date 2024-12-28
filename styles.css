@@ -46,7 +46,10 @@ canvas {
 }
 
 input[type="range"] {
-  width: 120px;
+  width: 100%;
+  /* Changed to 100% for better responsiveness */
+  max-width: 120px;
+  /* Added max-width for larger screens */
 }
 
 input[type="color"] {
@@ -60,6 +63,8 @@ input[type="color"] {
   margin-bottom: 15px;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  /* Allow buttons to wrap on smaller screens */
 }
 
 button {
@@ -69,6 +74,10 @@ button {
   padding: 8px 15px;
   border-radius: 5px;
   cursor: pointer;
+  flex: 1;
+  /* Allow buttons to grow */
+  min-width: 100px;
+  /* Minimum width for buttons */
 }
 
 button:hover {
@@ -95,4 +104,19 @@ button.active {
 #resetButton svg {
   width: 16px;
   height: 16px;
+}
+
+@media (max-width: 600px) {
+  #controls {
+    padding: 10px;
+    /* Reduced padding for smaller screens */
+  }
+  .control-group label {
+    font-size: 10px;
+    /* Smaller font size for labels */
+  }
+  button {
+    padding: 6px 10px;
+    /* Smaller button padding */
+  }
 }
