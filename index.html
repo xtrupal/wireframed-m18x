@@ -1,0 +1,213 @@
+<html>
+  <head>
+    <title>Interstellar Black Hole</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="controls">
+      <div class="tab-buttons">
+        <button onclick="showSection('blackHoleControls')" class="active">
+          Black Hole
+        </button>
+        <button onclick="showSection('accretionDiskControls')">
+          Accretion Disk
+        </button>
+        <button onclick="showSection('glowDiskControls')">Glow Disk</button>
+        <button onclick="showSection('lensingControls')">Lensing Rings</button>
+        <button onclick="showSection('starfieldControls')">Starfield</button>
+        <button id="resetButton" onclick="resetAllControls()" title="Reset All">
+          <svg viewBox="0 0 24 24" fill="white">
+            <path
+              d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div id="blackHoleControls" class="control-section active">
+        <div class="control-group">
+          <label>Size</label>
+          <input
+            type="range"
+            id="blackHoleSize"
+            min="2"
+            max="10"
+            value="5"
+            step="0.5"
+          />
+        </div>
+        <div class="control-group">
+          <label>Color</label>
+          <input type="color" id="blackHoleColor" value="#000000" />
+        </div>
+      </div>
+
+      <div id="accretionDiskControls" class="control-section">
+        <div class="control-group">
+          <label>Size</label>
+          <input
+            type="range"
+            id="diskSize"
+            min="8"
+            max="20"
+            value="12"
+            step="0.5"
+          />
+        </div>
+        <div class="control-group">
+          <label>Thickness</label>
+          <input
+            type="range"
+            id="diskThickness"
+            min="1"
+            max="8"
+            value="4"
+            step="0.5"
+          />
+        </div>
+        <div class="control-group">
+          <label>Color</label>
+          <input type="color" id="diskColor" value="#ff7700" />
+        </div>
+        <div class="control-group">
+          <label>Opacity</label>
+          <input
+            type="range"
+            id="diskOpacity"
+            min="0.1"
+            max="1"
+            value="0.8"
+            step="0.1"
+          />
+        </div>
+        <div class="control-group">
+          <label>Rotation Speed</label>
+          <input
+            type="range"
+            id="diskRotationSpeed"
+            min="0"
+            max="0.01"
+            value="0.002"
+            step="0.001"
+          />
+        </div>
+      </div>
+
+      <div id="glowDiskControls" class="control-section">
+        <div class="control-group">
+          <label>Size</label>
+          <input
+            type="range"
+            id="glowSize"
+            min="8"
+            max="20"
+            value="12"
+            step="0.5"
+          />
+        </div>
+        <div class="control-group">
+          <label>Thickness</label>
+          <input
+            type="range"
+            id="glowThickness"
+            min="2"
+            max="10"
+            value="6"
+            step="0.5"
+          />
+        </div>
+        <div class="control-group">
+          <label>Color</label>
+          <input type="color" id="glowColor" value="#ff3300" />
+        </div>
+        <div class="control-group">
+          <label>Opacity</label>
+          <input
+            type="range"
+            id="glowOpacity"
+            min="0.1"
+            max="1"
+            value="0.3"
+            step="0.1"
+          />
+        </div>
+      </div>
+
+      <div id="lensingControls" class="control-section">
+        <div class="control-group">
+          <label>Ring Count</label>
+          <input
+            type="range"
+            id="ringCount"
+            min="1"
+            max="12"
+            value="8"
+            step="1"
+          />
+        </div>
+        <div class="control-group">
+          <label>Color</label>
+          <input type="color" id="ringColor" value="#00ffff" />
+        </div>
+        <div class="control-group">
+          <label>Opacity</label>
+          <input
+            type="range"
+            id="ringOpacity"
+            min="0.1"
+            max="1"
+            value="0.3"
+            step="0.1"
+          />
+        </div>
+      </div>
+
+      <div id="starfieldControls" class="control-section">
+        <div class="control-group">
+          <label>Star Count</label>
+          <input
+            type="range"
+            id="starCount"
+            min="1000"
+            max="5000"
+            value="3000"
+            step="100"
+          />
+        </div>
+        <div class="control-group">
+          <label>Star Size</label>
+          <input
+            type="range"
+            id="starSize"
+            min="0.1"
+            max="2"
+            value="0.5"
+            step="0.1"
+          />
+        </div>
+        <div class="control-group">
+          <label>Color</label>
+          <input type="color" id="starColor" value="#ffffff" />
+        </div>
+        <div class="control-group">
+          <label>Opacity</label>
+          <input
+            type="range"
+            id="starOpacity"
+            min="0.1"
+            max="1"
+            value="0.8"
+            step="0.1"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script
+      async
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"
+    ></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>

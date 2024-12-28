@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+canvas {
+  display: block;
+}
+
+#controls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  width: 90%;
+  max-width: 800px;
+}
+
+.control-section {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.control-section.active {
+  display: grid;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.control-group label {
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+input[type="range"] {
+  width: 120px;
+}
+
+input[type="color"] {
+  width: 50px;
+  height: 25px;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #666;
+}
+
+button.active {
+  background: #0066cc;
+}
+
+#resetButton {
+  background: #cc0000;
+  padding: 6px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#resetButton:hover {
+  background: #ff0000;
+}
+
+#resetButton svg {
+  width: 16px;
+  height: 16px;
+}
