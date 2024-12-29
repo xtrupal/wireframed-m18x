@@ -8,6 +8,22 @@ canvas {
   display: block;
 }
 
+h1 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  position: absolute;
+  margin: auto;
+  font-size: smaller;
+  top: 5;
+  left: 5;
+  color: rgb(226, 54, 54);
+  z-index: 10;
+}
+
+a {
+  color: rgb(170, 255, 0);
+  text-decoration: nono;
+}
+
 #controls {
   position: fixed;
   bottom: 20px;
